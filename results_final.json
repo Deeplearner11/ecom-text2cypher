@@ -1,0 +1,1006 @@
+{
+  "schema_aware": [
+    {
+      "id": 1,
+      "complexity": "simple",
+      "question": "How many customers are there in total?",
+      "generated_cypher": "MATCH (c:Customer)\nRETURN count(c) AS total_customers",
+      "executable": true,
+      "correct": true,
+      "bleu": 1.0,
+      "token_count": 258
+    },
+    {
+      "id": 2,
+      "complexity": "simple",
+      "question": "How many orders have been placed?",
+      "generated_cypher": "MATCH ()-[:PLACED]->()\nRETURN count(*) AS NumberOfOrders",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.1764,
+      "token_count": 257
+    },
+    {
+      "id": 3,
+      "complexity": "simple",
+      "question": "How many sellers are there?",
+      "generated_cypher": "MATCH (s:Seller)\nRETURN count(s) AS NumberOfSellers",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.9122,
+      "token_count": 256
+    },
+    {
+      "id": 4,
+      "complexity": "simple",
+      "question": "How many products are in the graph?",
+      "generated_cypher": "MATCH (p:Product)\nRETURN count(p) AS NumberOfProducts",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.9122,
+      "token_count": 258
+    },
+    {
+      "id": 5,
+      "complexity": "simple",
+      "question": "List all unique order statuses.",
+      "generated_cypher": "MATCH (o:Order)\nRETURN DISTINCT o.status",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.8338,
+      "token_count": 256
+    },
+    {
+      "id": 6,
+      "complexity": "simple",
+      "question": "List all unique product categories.",
+      "generated_cypher": "MATCH (p:Product)\nRETURN DISTINCT p.category",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.8338,
+      "token_count": 256
+    },
+    {
+      "id": 7,
+      "complexity": "simple",
+      "question": "How many reviews have a score of 5?",
+      "generated_cypher": "MATCH (r:Review {score: 5})\nRETURN count(r) AS numberOfReviews",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.9391,
+      "token_count": 259
+    },
+    {
+      "id": 8,
+      "complexity": "simple",
+      "question": "How many orders have status delivered?",
+      "generated_cypher": "MATCH (o:Order)\nWHERE o.status = 'delivered'\nRETURN count(o) AS delivered_order_count",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.4705,
+      "token_count": 257
+    },
+    {
+      "id": 9,
+      "complexity": "simple",
+      "question": "List all unique states where customers are located.",
+      "generated_cypher": "MATCH (c:Customer)\nRETURN DISTINCT c.state",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.8338,
+      "token_count": 259
+    },
+    {
+      "id": 10,
+      "complexity": "simple",
+      "question": "How many orders have a review?",
+      "generated_cypher": "MATCH (o:Order)-[:HAS_REVIEW]->(:Review)\nRETURN count(DISTINCT o) AS NumberOfOrdersWithReviews",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.8546,
+      "token_count": 257
+    },
+    {
+      "id": 11,
+      "complexity": "filter",
+      "question": "How many customers are from Sao Paulo state?",
+      "generated_cypher": "MATCH (c:Customer)\nWHERE c.state = \"SP\"\nRETURN count(c) AS numberOfCustomersFromSaoPaulo",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.4186,
+      "token_count": 259
+    },
+    {
+      "id": 12,
+      "complexity": "filter",
+      "question": "How many orders were cancelled?",
+      "generated_cypher": "MATCH (o:Order)\nWHERE o.status = 'canceled'\nRETURN count(o) AS cancelled_orders",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.5262,
+      "token_count": 256
+    },
+    {
+      "id": 13,
+      "complexity": "filter",
+      "question": "How many reviews have a score less than 3?",
+      "generated_cypher": "MATCH (r:Review)\nWHERE r.score < 3\nRETURN count(r) AS NumberOfReviewsWithScoreLessThan3",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.9426,
+      "token_count": 260
+    },
+    {
+      "id": 14,
+      "complexity": "filter",
+      "question": "How many sellers are from Rio de Janeiro state?",
+      "generated_cypher": "MATCH (s:Seller)\nWHERE s.state = \"RJ\"\nRETURN count(s) AS numberOfSellersFromRioDeJaneiro",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.4186,
+      "token_count": 260
+    },
+    {
+      "id": 15,
+      "complexity": "filter",
+      "question": "List all product categories that contain the word cama.",
+      "generated_cypher": "MATCH (p:Product)\nWHERE p.category CONTAINS 'cama'\nRETURN DISTINCT p.category",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.9001,
+      "token_count": 260
+    },
+    {
+      "id": 16,
+      "complexity": "filter",
+      "question": "How many orders were placed by customers from Minas Gerais state?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)\nWHERE c.state = \"MG\"\nRETURN count(o) AS numberOfOrders",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.6224,
+      "token_count": 262
+    },
+    {
+      "id": 17,
+      "complexity": "filter",
+      "question": "How many products belong to the esporte_lazer category?",
+      "generated_cypher": "MATCH (p:Product)\nWHERE p.category = \"esporte_lazer\"\nRETURN count(p)",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.384,
+      "token_count": 259
+    },
+    {
+      "id": 18,
+      "complexity": "filter",
+      "question": "How many orders have a review score of 1?",
+      "generated_cypher": "MATCH (o:Order)-[:HAS_REVIEW]->(r:Review {score: 1})\nRETURN count(o) AS NumberOfOrdersWithReviewScoreOf1",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.9649,
+      "token_count": 260
+    },
+    {
+      "id": 19,
+      "complexity": "filter",
+      "question": "How many sellers are from Sao Paulo state?",
+      "generated_cypher": "MATCH (s:Seller)\nWHERE s.state = \"SP\"\nRETURN count(s) AS numberOfSellersFromSaoPaulo",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.4186,
+      "token_count": 259
+    },
+    {
+      "id": 20,
+      "complexity": "filter",
+      "question": "How many customers are from the city of Rio de Janeiro?",
+      "generated_cypher": "MATCH (c:Customer)\nWHERE c.city = \"rio de janeiro\"\nRETURN count(c) AS numberOfCustomers",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.4266,
+      "token_count": 262
+    },
+    {
+      "id": 21,
+      "complexity": "aggregation",
+      "question": "What is the average review score across all orders?",
+      "generated_cypher": "MATCH (:Order)-[r:HAS_REVIEW]->(review:Review)\nWITH avg(review.score) AS average_score\nRETURN average_score",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.153,
+      "token_count": 260
+    },
+    {
+      "id": 22,
+      "complexity": "aggregation",
+      "question": "Which product category has the most products?",
+      "generated_cypher": "MATCH (p:Product)\nWITH p.category AS category, COUNT(p) AS product_count\nORDER BY product_count DESC\nLIMIT 1\nRETURN category",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.8059,
+      "token_count": 258
+    },
+    {
+      "id": 23,
+      "complexity": "aggregation",
+      "question": "Which state has the most customers?",
+      "generated_cypher": "MATCH (c:Customer)\nWITH c.state AS state, count(c) AS customer_count\nRETURN state, customer_count\nORDER BY customer_count DESC\nLIMIT 1",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.6961,
+      "token_count": 257
+    },
+    {
+      "id": 24,
+      "complexity": "aggregation",
+      "question": "What is the most common order status?",
+      "generated_cypher": "MATCH (o:Order)\nWITH o.status AS status, count(o) AS count\nORDER BY count DESC\nRETURN status\nLIMIT 1",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.7306,
+      "token_count": 258
+    },
+    {
+      "id": 25,
+      "complexity": "aggregation",
+      "question": "How many orders does each seller have?",
+      "generated_cypher": "MATCH (s:Seller)-[:SOLD_BY]->(p:Product)<-[:CONTAINS]-(o:Order)\nRETURN s.seller_id, COUNT(o) AS NumberOfOrders\nORDER BY NumberOfOrders DESC",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.628,
+      "token_count": 258
+    },
+    {
+      "id": 26,
+      "complexity": "aggregation",
+      "question": "Which city has the most sellers?",
+      "generated_cypher": "MATCH (s:Seller)\nWITH s.city AS city, count(s) AS sellerCount\nRETURN city, sellerCount\nORDER BY sellerCount DESC\nLIMIT 1",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.6961,
+      "token_count": 257
+    },
+    {
+      "id": 27,
+      "complexity": "aggregation",
+      "question": "What is the average review score per product category?",
+      "generated_cypher": "MATCH (p:Product)-[:SOLD_BY]->(s:Seller)\nWITH p.category AS ProductCategory, avg(s.score) AS AverageReviewScore\nRETURN ProductCategory, AverageReviewScore",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.2559,
+      "token_count": 260
+    },
+    {
+      "id": 28,
+      "complexity": "aggregation",
+      "question": "How many orders were placed per state?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)\nWITH c.state AS state, count(o) AS orderCount\nRETURN state, orderCount",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.7803,
+      "token_count": 258
+    },
+    {
+      "id": 29,
+      "complexity": "aggregation",
+      "question": "Which seller has sold products in the most orders?",
+      "generated_cypher": "MATCH (s:Seller)-[:SOLD_BY]->(p:Product)<-[:CONTAINS]-(o:Order)\nWITH s, COUNT(o) AS order_count\nORDER BY order_count DESC\nLIMIT 1\nRETURN s.seller_id, order_count",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.5983,
+      "token_count": 260
+    },
+    {
+      "id": 30,
+      "complexity": "aggregation",
+      "question": "How many products has each seller sold?",
+      "generated_cypher": "MATCH (s:Seller)-[:SOLD_BY]->(p:Product)\nRETURN s.seller_id, COUNT(p) AS products_sold",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.6397,
+      "token_count": 258
+    },
+    {
+      "id": 31,
+      "complexity": "multihop",
+      "question": "Which customers placed orders that received a review score of 5?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:HAS_REVIEW]->(r:Review {score: 5})\nRETURN c.customer_id, c.city, c.state",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.7899,
+      "token_count": 262
+    },
+    {
+      "id": 32,
+      "complexity": "multihop",
+      "question": "Which sellers sold products in orders that were cancelled?",
+      "generated_cypher": "MATCH (o:Order)-[:CONTAINS]->(p:Product)<-[:SOLD_BY]-(s:Seller)\nWHERE o.status = 'canceled'\nRETURN DISTINCT s.seller_id",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.6441,
+      "token_count": 260
+    },
+    {
+      "id": 33,
+      "complexity": "multihop",
+      "question": "Which product categories were ordered by customers from Sao Paulo state?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product)\nWHERE c.state = \"SP\"\nRETURN DISTINCT p.category",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.7239,
+      "token_count": 262
+    },
+    {
+      "id": 34,
+      "complexity": "multihop",
+      "question": "How many customers from Rio de Janeiro state placed orders with a review score of 1?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:HAS_REVIEW]->(r:Review)\nWHERE c.state = \"RJ\" AND r.score = 1\nRETURN count(DISTINCT c) AS numberOfCustomers",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.6409,
+      "token_count": 267
+    },
+    {
+      "id": 35,
+      "complexity": "multihop",
+      "question": "Which sellers sold products to customers from Minas Gerais?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product)<-[:SOLD_BY]-(s:Seller)\nWHERE c.state = \"MG\"\nRETURN DISTINCT s.seller_id, s.seller_id",
+      "executable": false,
+      "correct": false,
+      "bleu": 0.6731,
+      "token_count": 260
+    },
+    {
+      "id": 36,
+      "complexity": "multihop",
+      "question": "What product categories did customers from SP order that got a 5 star review?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:HAS_REVIEW]->(r:Review)\nWHERE c.state = \"SP\" AND r.score = 5\nMATCH (o)-[:CONTAINS]->(p:Product)\nRETURN DISTINCT p.category",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.7161,
+      "token_count": 265
+    },
+    {
+      "id": 37,
+      "complexity": "multihop",
+      "question": "Which customers placed more than one order?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)\nWITH c, COUNT(o) AS orderCount\nWHERE orderCount > 1\nRETURN c.customer_id, c.city, c.state, orderCount",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.67,
+      "token_count": 258
+    },
+    {
+      "id": 38,
+      "complexity": "multihop",
+      "question": "Which sellers have only received 1 star reviews?",
+      "generated_cypher": "MATCH (s:Seller)-[:SOLD_BY]->(p:Product)<-[:HAS_REVIEW]-(r:Review)\nWHERE r.score = 1\nWITH s, COUNT(r) AS reviewCount\nWHERE reviewCount = 1\nRETURN s.seller_id, s.city, s.state",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.3986,
+      "token_count": 259
+    },
+    {
+      "id": 39,
+      "complexity": "multihop",
+      "question": "How many distinct product categories were ordered by customers from each state?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product)\nWITH c.state AS state, collect(DISTINCT p.category) AS categories\nRETURN state, categories",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.7956,
+      "token_count": 263
+    },
+    {
+      "id": 40,
+      "complexity": "multihop",
+      "question": "Which product categories have an average review score above 4?",
+      "generated_cypher": "MATCH (p:Product)<-[:SOLD_BY]-(s:Seller)\nWITH p, avg(s.score) AS avg_score\nWHERE avg_score > 4\nRETURN p.category",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.2595,
+      "token_count": 261
+    },
+    {
+      "id": 41,
+      "complexity": "multihop",
+      "question": "Which customers placed orders containing products from more than one seller?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product)<-[:SOLD_BY]-(s:Seller)\nWITH c, count(DISTINCT s) AS num_sellers\nWHERE num_sellers > 1\nRETURN c.customer_id, c.city, c.state",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.7179,
+      "token_count": 262
+    },
+    {
+      "id": 42,
+      "complexity": "multihop",
+      "question": "What is the average review score for orders placed by customers from SP?",
+      "generated_cypher": "MATCH (c:Customer {state: \"SP\"})-[:PLACED]->(o:Order)-[:HAS_REVIEW]->(r:Review)\nWITH avg(r.score) AS average_score\nRETURN average_score",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.7912,
+      "token_count": 264
+    },
+    {
+      "id": 43,
+      "complexity": "multihop",
+      "question": "Which sellers sold products that were ordered by customers from more than 3 different states?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product)<-[:SOLD_BY]-(s:Seller)\nWITH s, count(DISTINCT c.state) AS customer_states\nWHERE customer_states > 3\nRETURN s.seller_id, s.city, s.state",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.7596,
+      "token_count": 266
+    },
+    {
+      "id": 44,
+      "complexity": "multihop",
+      "question": "How many orders containing products in the informatica_acessorios category received a review score below 3?",
+      "generated_cypher": "MATCH (o:Order)-[:CONTAINS]->(p:Product {category: \"informatica_acessorios\"})\nMATCH (o)-[:HAS_REVIEW]->(r:Review)\nWHERE r.score < 3\nRETURN count(DISTINCT o) AS NumberOfOrders",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.8577,
+      "token_count": 266
+    },
+    {
+      "id": 45,
+      "complexity": "multihop",
+      "question": "Which states have customers who ordered products from sellers in SP?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product)<-[:SOLD_BY]-(s:Seller {state: 'SP'})\nWITH DISTINCT c.state AS state\nRETURN collect(state) AS states",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.7644,
+      "token_count": 262
+    },
+    {
+      "id": 46,
+      "complexity": "multihop",
+      "question": "What is the most ordered product category by customers from RJ?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product)\nWHERE c.state = \"RJ\"\nRETURN p.category AS ProductCategory, COUNT(o) AS OrderCount\nORDER BY OrderCount DESC\nLIMIT 1",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.6619,
+      "token_count": 262
+    },
+    {
+      "id": 47,
+      "complexity": "multihop",
+      "question": "Which sellers have sold products across the most product categories?",
+      "generated_cypher": "MATCH (s:Seller)-[:SOLD_BY]->(p:Product)\nWITH s, count(DISTINCT p.category) AS num_categories\nRETURN s.seller_id, num_categories\nORDER BY num_categories DESC\nLIMIT 1",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.6234,
+      "token_count": 261
+    },
+    {
+      "id": 48,
+      "complexity": "multihop",
+      "question": "How many orders placed by customers from SP contained products sold by sellers also from SP?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product)<-[:SOLD_BY]-(s:Seller)\nWHERE c.state = 'SP' AND s.state = 'SP'\nRETURN count(DISTINCT o) AS NumberOfOrders",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.6566,
+      "token_count": 267
+    },
+    {
+      "id": 49,
+      "complexity": "multihop",
+      "question": "Which product categories have never received a review score below 2?",
+      "generated_cypher": "MATCH (p:Product)\nWHERE NOT EXISTS {  \nMATCH (p)-[:SOLD_BY]->(s:Seller)<-[:HAS_REVIEW]-(r:Review)  \nWHERE r.score < 2 }\nRETURN DISTINCT p.category",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.4157,
+      "token_count": 262
+    },
+    {
+      "id": 50,
+      "complexity": "multihop",
+      "question": "How many customers placed orders with all 5 star reviews?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:HAS_REVIEW]->(r:Review)\nWHERE r.score = 5\nWITH c, count(o) AS ordersCount\nWHERE ordersCount = 5\nRETURN count(c) AS customersWithFiveStarReviews",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.6125,
+      "token_count": 261
+    }
+  ],
+  "with_pruning": [
+    {
+      "id": 1,
+      "complexity": "simple",
+      "question": "How many customers are there in total?",
+      "generated_cypher": "MATCH (c:Customer)\nRETURN count(c) AS total_customers",
+      "executable": true,
+      "correct": true,
+      "bleu": 1.0,
+      "token_count": 71
+    },
+    {
+      "id": 2,
+      "complexity": "simple",
+      "question": "How many orders have been placed?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)\nRETURN count(o) AS NumberOfOrdersPlaced",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.4206,
+      "token_count": 110
+    },
+    {
+      "id": 3,
+      "complexity": "simple",
+      "question": "How many sellers are there?",
+      "generated_cypher": "MATCH (n:Seller)\nRETURN count(n) AS seller_count",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.4704,
+      "token_count": 69
+    },
+    {
+      "id": 4,
+      "complexity": "simple",
+      "question": "How many products are in the graph?",
+      "generated_cypher": "MATCH (p:Product)\nRETURN count(p) AS NumberOfProducts",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.9122,
+      "token_count": 61
+    },
+    {
+      "id": 5,
+      "complexity": "simple",
+      "question": "List all unique order statuses.",
+      "generated_cypher": "MATCH (o:Order)\nRETURN DISTINCT o.status",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.8338,
+      "token_count": 91
+    },
+    {
+      "id": 6,
+      "complexity": "simple",
+      "question": "List all unique product categories.",
+      "generated_cypher": "MATCH (n:Product)\nRETURN DISTINCT n.category",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.375,
+      "token_count": 59
+    },
+    {
+      "id": 7,
+      "complexity": "simple",
+      "question": "How many reviews have a score of 5?",
+      "generated_cypher": "MATCH (n:Review)\nWHERE n.score = 5\nRETURN count(n) AS five_star_reviews",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.1702,
+      "token_count": 64
+    },
+    {
+      "id": 8,
+      "complexity": "simple",
+      "question": "How many orders have status delivered?",
+      "generated_cypher": "MATCH (n:Order)\nWHERE n.status = 'delivered'\nRETURN count(n) AS deliveredOrders",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.1616,
+      "token_count": 92
+    },
+    {
+      "id": 9,
+      "complexity": "simple",
+      "question": "List all unique states where customers are located.",
+      "generated_cypher": "MATCH (c:Customer)\nRETURN DISTINCT c.state",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.8338,
+      "token_count": 72
+    },
+    {
+      "id": 10,
+      "complexity": "simple",
+      "question": "How many orders have a review?",
+      "generated_cypher": "MATCH (o:Order)-[:HAS_REVIEW]->(:Review)\nRETURN count(DISTINCT o) AS NumberOfOrdersWithReviews",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.8546,
+      "token_count": 132
+    },
+    {
+      "id": 11,
+      "complexity": "filter",
+      "question": "How many customers are from Sao Paulo state?",
+      "generated_cypher": "MATCH (c:Customer)\nWHERE c.state = 'SP'\nRETURN count(c) AS SaoPauloCustomerCount",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.4705,
+      "token_count": 72
+    },
+    {
+      "id": 12,
+      "complexity": "filter",
+      "question": "How many orders were cancelled?",
+      "generated_cypher": "MATCH (o:Order)\nWHERE o.status = 'canceled'\nRETURN count(o) AS cancelled_orders",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.5262,
+      "token_count": 91
+    },
+    {
+      "id": 13,
+      "complexity": "filter",
+      "question": "How many reviews have a score less than 3?",
+      "generated_cypher": "MATCH (r:Review)\nWHERE r.score < 3\nRETURN count(r) AS NumberOfReviews",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.9426,
+      "token_count": 65
+    },
+    {
+      "id": 14,
+      "complexity": "filter",
+      "question": "How many sellers are from Rio de Janeiro state?",
+      "generated_cypher": "MATCH (s:Seller)\nWHERE s.state = 'RJ'\nRETURN count(s) AS numberOfSellers",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.4705,
+      "token_count": 73
+    },
+    {
+      "id": 15,
+      "complexity": "filter",
+      "question": "List all product categories that contain the word cama.",
+      "generated_cypher": "MATCH (p:Product)\nWHERE p.category CONTAINS 'cama'\nRETURN DISTINCT p.category",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.9001,
+      "token_count": 63
+    },
+    {
+      "id": 16,
+      "complexity": "filter",
+      "question": "How many orders were placed by customers from Minas Gerais state?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)\nWHERE c.state = \"MG\"\nRETURN count(o) AS numberOfOrders",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.6224,
+      "token_count": 145
+    },
+    {
+      "id": 17,
+      "complexity": "filter",
+      "question": "How many products belong to the esporte_lazer category?",
+      "generated_cypher": "MATCH (n:Product)\nWHERE n.category = 'esporte_lazer'\nRETURN count(n) AS NumberOfProducts",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.1616,
+      "token_count": 62
+    },
+    {
+      "id": 18,
+      "complexity": "filter",
+      "question": "How many orders have a review score of 1?",
+      "generated_cypher": "MATCH (o:Order)-[:HAS_REVIEW]->(r:Review {score: 1})\nRETURN count(DISTINCT o) AS NumberOfOrdersWithReviewScoreOf1",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.8787,
+      "token_count": 135
+    },
+    {
+      "id": 19,
+      "complexity": "filter",
+      "question": "How many sellers are from Sao Paulo state?",
+      "generated_cypher": "MATCH (n:Seller)\nWHERE n.state = 'SP'\nRETURN count(n) AS NumberOfSellersFromSaoPaulo",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.1616,
+      "token_count": 72
+    },
+    {
+      "id": 20,
+      "complexity": "filter",
+      "question": "How many customers are from the city of Rio de Janeiro?",
+      "generated_cypher": "MATCH (c:Customer)\nWHERE c.city = 'Rio de Janeiro'\nRETURN count(c) AS numberOfCustomers",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.5269,
+      "token_count": 75
+    },
+    {
+      "id": 21,
+      "complexity": "aggregation",
+      "question": "What is the average review score across all orders?",
+      "generated_cypher": "MATCH (:Order)-[r:HAS_REVIEW]->(review:Review)\nWITH avg(review.score) AS average_score\nRETURN average_score",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.153,
+      "token_count": 135
+    },
+    {
+      "id": 22,
+      "complexity": "aggregation",
+      "question": "Which product category has the most products?",
+      "generated_cypher": "MATCH (p:Product)\nWITH p.category AS category, count(p) AS productCount\nORDER BY productCount DESC\nLIMIT 1\nRETURN category",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.8059,
+      "token_count": 61
+    },
+    {
+      "id": 23,
+      "complexity": "aggregation",
+      "question": "Which state has the most customers?",
+      "generated_cypher": "MATCH (c:Customer)\nRETURN c.state AS state, COUNT(c) AS customer_count\nORDER BY customer_count DESC\nLIMIT 1",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.6249,
+      "token_count": 70
+    },
+    {
+      "id": 24,
+      "complexity": "aggregation",
+      "question": "What is the most common order status?",
+      "generated_cypher": "MATCH (o:Order)\nWITH o.status AS status, COUNT(o) AS count\nORDER BY count DESC\nLIMIT 1\nRETURN status",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.8059,
+      "token_count": 93
+    },
+    {
+      "id": 25,
+      "complexity": "aggregation",
+      "question": "How many orders does each seller have?",
+      "generated_cypher": "MATCH (s:Seller)-[:SOLD_BY]->()\nWITH s, count{(s)-[:SOLD_BY]->()} AS orderCount\nRETURN s.seller_id, orderCount",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.4051,
+      "token_count": 176
+    },
+    {
+      "id": 26,
+      "complexity": "aggregation",
+      "question": "Which city has the most sellers?",
+      "generated_cypher": "MATCH (s:Seller)\nRETURN s.city AS city, COUNT(s) AS seller_count\nORDER BY seller_count DESC\nLIMIT 1",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.6249,
+      "token_count": 70
+    },
+    {
+      "id": 27,
+      "complexity": "aggregation",
+      "question": "What is the average review score per product category?",
+      "generated_cypher": "MATCH (o:Order)-[:HAS_REVIEW]->(r:Review)-[:CONTAINS]->(p:Product)\nWITH p.category AS category, avg(r.score) AS avg_score\nRETURN category, avg_score",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.7919,
+      "token_count": 118
+    },
+    {
+      "id": 28,
+      "complexity": "aggregation",
+      "question": "How many orders were placed per state?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)\nRETURN c.state AS state, COUNT(o) AS order_count\nORDER BY state",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.8726,
+      "token_count": 141
+    },
+    {
+      "id": 29,
+      "complexity": "aggregation",
+      "question": "Which seller has sold products in the most orders?",
+      "generated_cypher": "MATCH (s:Seller)-[:SOLD_BY]->(p:Product)<-[:CONTAINS]-(o:Order)\nWITH s, COUNT(o) AS order_count\nORDER BY order_count DESC\nLIMIT 1\nRETURN s.seller_id, order_count",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.5983,
+      "token_count": 178
+    },
+    {
+      "id": 30,
+      "complexity": "aggregation",
+      "question": "How many products has each seller sold?",
+      "generated_cypher": "MATCH (s:Seller)-[:SOLD_BY]->(p:Product)\nRETURN s.seller_id, COUNT(p) AS products_sold",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.6397,
+      "token_count": 109
+    },
+    {
+      "id": 31,
+      "complexity": "multihop",
+      "question": "Which customers placed orders that received a review score of 5?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:HAS_REVIEW]->(r:Review {score: 5})\nRETURN DISTINCT c.customer_id, c.customer_id",
+      "executable": false,
+      "correct": false,
+      "bleu": 0.9114,
+      "token_count": 182
+    },
+    {
+      "id": 32,
+      "complexity": "multihop",
+      "question": "Which sellers sold products in orders that were cancelled?",
+      "generated_cypher": "MATCH (o:Order)-[:CONTAINS]->(p:Product)<-[:SOLD_BY]-(s:Seller)\nWHERE o.status = 'canceled'\nRETURN DISTINCT s.seller_id",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.6441,
+      "token_count": 178
+    },
+    {
+      "id": 33,
+      "complexity": "multihop",
+      "question": "Which product categories were ordered by customers from Sao Paulo state?",
+      "generated_cypher": "MATCH (c:Customer {state: \"SP\"})-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product)\nRETURN DISTINCT p.category",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.8516,
+      "token_count": 180
+    },
+    {
+      "id": 34,
+      "complexity": "multihop",
+      "question": "How many customers from Rio de Janeiro state placed orders with a review score of 1?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:HAS_REVIEW]->(r:Review)\nWHERE c.state = \"RJ\" AND r.score = 1\nRETURN count(DISTINCT c) AS numberOfCustomers",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.6409,
+      "token_count": 187
+    },
+    {
+      "id": 35,
+      "complexity": "multihop",
+      "question": "Which sellers sold products to customers from Minas Gerais?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product)<-[:SOLD_BY]-(s:Seller)\nWHERE c.state = \"MG\"\nRETURN DISTINCT s.seller_id, s.seller_id",
+      "executable": false,
+      "correct": false,
+      "bleu": 0.6731,
+      "token_count": 223
+    },
+    {
+      "id": 36,
+      "complexity": "multihop",
+      "question": "What product categories did customers from SP order that got a 5 star review?",
+      "generated_cypher": "MATCH (c:Customer {state: \"SP\"})-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product)<-[:HAS_REVIEW]-(r:Review {score: 5})\nRETURN DISTINCT p.category",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.757,
+      "token_count": 220
+    },
+    {
+      "id": 37,
+      "complexity": "multihop",
+      "question": "Which customers placed more than one order?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)\nWITH c, COUNT(o) AS orderCount\nWHERE orderCount > 1\nRETURN c.customer_id, c.city, c.state",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.7023,
+      "token_count": 141
+    },
+    {
+      "id": 38,
+      "complexity": "multihop",
+      "question": "Which sellers have only received 1 star reviews?",
+      "generated_cypher": "MATCH (s:Seller)<-[:SOLD_BY]-(p:Product)<-[:CONTAINS]-(o:Order)-[:HAS_REVIEW]->(r:Review)\nWHERE r.score = 1\nRETURN DISTINCT s.seller_id",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.4565,
+      "token_count": 142
+    },
+    {
+      "id": 39,
+      "complexity": "multihop",
+      "question": "How many distinct product categories were ordered by customers from each state?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product)\nWITH c.state AS state, collect(DISTINCT p.category) AS categories\nRETURN state, categories",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.7956,
+      "token_count": 181
+    },
+    {
+      "id": 40,
+      "complexity": "multihop",
+      "question": "Which product categories have an average review score above 4?",
+      "generated_cypher": "MATCH (o:Order)-[:HAS_REVIEW]->(r:Review)-[:CONTAINS]->(p:Product)\nWITH p.category AS category, AVG(r.score) AS avg_score\nWHERE avg_score > 4\nRETURN category",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.7959,
+      "token_count": 119
+    },
+    {
+      "id": 41,
+      "complexity": "multihop",
+      "question": "Which customers placed orders containing products from more than one seller?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product)<-[:SOLD_BY]-(s:Seller)\nWITH c, count(DISTINCT s) AS num_sellers\nWHERE num_sellers > 1\nRETURN c.customer_id, c.city, c.state",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.7179,
+      "token_count": 225
+    },
+    {
+      "id": 42,
+      "complexity": "multihop",
+      "question": "What is the average review score for orders placed by customers from SP?",
+      "generated_cypher": "MATCH (c:Customer {state: \"SP\"})-[:PLACED]->(o:Order)-[:HAS_REVIEW]->(r:Review)\nWITH avg(r.score) AS average_score\nRETURN average_score",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.7912,
+      "token_count": 184
+    },
+    {
+      "id": 43,
+      "complexity": "multihop",
+      "question": "Which sellers sold products that were ordered by customers from more than 3 different states?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product)<-[:SOLD_BY]-(s:Seller)\nWITH s, count(DISTINCT c.state) AS customer_states\nWHERE customer_states > 3\nRETURN s.seller_id, s.city, s.state",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.7596,
+      "token_count": 229
+    },
+    {
+      "id": 44,
+      "complexity": "multihop",
+      "question": "How many orders containing products in the informatica_acessorios category received a review score below 3?",
+      "generated_cypher": "MATCH (o:Order)-[:CONTAINS]->(p:Product {category: \"informatica_acessorios\"})\nMATCH (o)-[:HAS_REVIEW]->(r:Review)\nWHERE r.score < 3\nRETURN count(DISTINCT o) AS count",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.8577,
+      "token_count": 176
+    },
+    {
+      "id": 45,
+      "complexity": "multihop",
+      "question": "Which states have customers who ordered products from sellers in SP?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product)<-[:SOLD_BY]-(s:Seller {state: 'SP'})\nWITH DISTINCT c.state AS state\nRETURN collect(state) AS states",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.7644,
+      "token_count": 225
+    },
+    {
+      "id": 46,
+      "complexity": "multihop",
+      "question": "What is the most ordered product category by customers from RJ?",
+      "generated_cypher": "MATCH (c:Customer {state: \"RJ\"})-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product)\nRETURN p.category AS ProductCategory, COUNT(o) AS OrderCount\nORDER BY OrderCount DESC\nLIMIT 1",
+      "executable": true,
+      "correct": true,
+      "bleu": 0.7907,
+      "token_count": 180
+    },
+    {
+      "id": 47,
+      "complexity": "multihop",
+      "question": "Which sellers have sold products across the most product categories?",
+      "generated_cypher": "MATCH (s:Seller)-[:SOLD_BY]->(p:Product)\nWITH s, count(DISTINCT p.category) AS num_categories\nRETURN s.seller_id, num_categories\nORDER BY num_categories DESC",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.6458,
+      "token_count": 112
+    },
+    {
+      "id": 48,
+      "complexity": "multihop",
+      "question": "How many orders placed by customers from SP contained products sold by sellers also from SP?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product)<-[:SOLD_BY]-(s:Seller)\nWHERE c.state = 'SP' AND s.state = 'SP'\nRETURN count(DISTINCT o) AS NumberOfOrders",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.6566,
+      "token_count": 230
+    },
+    {
+      "id": 49,
+      "complexity": "multihop",
+      "question": "Which product categories have never received a review score below 2?",
+      "generated_cypher": "MATCH (o:Order)-[:HAS_REVIEW]->(r:Review)\nMATCH (o)-[:CONTAINS]->(p:Product)\nWITH p.category AS category, MAX(r.score) AS max_score\nWHERE max_score >= 2\nRETURN category",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.6941,
+      "token_count": 120
+    },
+    {
+      "id": 50,
+      "complexity": "multihop",
+      "question": "How many customers placed orders with all 5 star reviews?",
+      "generated_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:HAS_REVIEW]->(r:Review)\nWHERE r.score = 5\nWITH c, COUNT(o) AS orderCount\nWHERE orderCount = 5\nRETURN COUNT(c) AS customersWithFiveStarReviews",
+      "executable": true,
+      "correct": false,
+      "bleu": 0.6125,
+      "token_count": 181
+    }
+  ]
+}

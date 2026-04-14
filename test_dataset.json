@@ -1,0 +1,302 @@
+[
+    {
+      "id": 1,
+      "complexity": "simple",
+      "question": "How many customers are there in total?",
+      "gold_cypher": "MATCH (c:Customer) RETURN count(c) AS total_customers"
+    },
+    {
+      "id": 2,
+      "complexity": "simple",
+      "question": "How many orders have been placed?",
+      "gold_cypher": "MATCH (o:Order) RETURN count(o) AS total_orders"
+    },
+    {
+      "id": 3,
+      "complexity": "simple",
+      "question": "How many sellers are there?",
+      "gold_cypher": "MATCH (s:Seller) RETURN count(s) AS total_sellers"
+    },
+    {
+      "id": 4,
+      "complexity": "simple",
+      "question": "How many products are in the graph?",
+      "gold_cypher": "MATCH (p:Product) RETURN count(p) AS total_products"
+    },
+    {
+      "id": 5,
+      "complexity": "simple",
+      "question": "List all unique order statuses.",
+      "gold_cypher": "MATCH (o:Order) RETURN DISTINCT o.status AS status"
+    },
+    {
+      "id": 6,
+      "complexity": "simple",
+      "question": "List all unique product categories.",
+      "gold_cypher": "MATCH (p:Product) RETURN DISTINCT p.category AS category"
+    },
+    {
+      "id": 7,
+      "complexity": "simple",
+      "question": "How many reviews have a score of 5?",
+      "gold_cypher": "MATCH (r:Review {score: 5}) RETURN count(r) AS five_star_reviews"
+    },
+    {
+      "id": 8,
+      "complexity": "simple",
+      "question": "How many orders have status delivered?",
+      "gold_cypher": "MATCH (o:Order {status: 'delivered'}) RETURN count(o) AS delivered_orders"
+    },
+    {
+      "id": 9,
+      "complexity": "simple",
+      "question": "List all unique states where customers are located.",
+      "gold_cypher": "MATCH (c:Customer) RETURN DISTINCT c.state AS state"
+    },
+    {
+      "id": 10,
+      "complexity": "simple",
+      "question": "How many orders have a review?",
+      "gold_cypher": "MATCH (o:Order)-[:HAS_REVIEW]->(r:Review) RETURN count(DISTINCT o) AS orders_with_reviews"
+    },
+    {
+      "id": 11,
+      "complexity": "filter",
+      "question": "How many customers are from Sao Paulo state?",
+      "gold_cypher": "MATCH (c:Customer {state: 'SP'}) RETURN count(c) AS customers_in_sp"
+    },
+    {
+      "id": 12,
+      "complexity": "filter",
+      "question": "How many orders were cancelled?",
+      "gold_cypher": "MATCH (o:Order {status: 'canceled'}) RETURN count(o) AS cancelled_orders"
+    },
+    {
+      "id": 13,
+      "complexity": "filter",
+      "question": "How many reviews have a score less than 3?",
+      "gold_cypher": "MATCH (r:Review) WHERE r.score < 3 RETURN count(r) AS low_score_reviews"
+    },
+    {
+      "id": 14,
+      "complexity": "filter",
+      "question": "How many sellers are from Rio de Janeiro state?",
+      "gold_cypher": "MATCH (s:Seller {state: 'RJ'}) RETURN count(s) AS sellers_in_rj"
+    },
+    {
+      "id": 15,
+      "complexity": "filter",
+      "question": "List all product categories that contain the word cama.",
+      "gold_cypher": "MATCH (p:Product) WHERE p.category CONTAINS 'cama' RETURN DISTINCT p.category AS category"
+    },
+    {
+      "id": 16,
+      "complexity": "filter",
+      "question": "How many orders were placed by customers from Minas Gerais state?",
+      "gold_cypher": "MATCH (c:Customer {state: 'MG'})-[:PLACED]->(o:Order) RETURN count(o) AS orders_from_mg"
+    },
+    {
+      "id": 17,
+      "complexity": "filter",
+      "question": "How many products belong to the esporte_lazer category?",
+      "gold_cypher": "MATCH (p:Product {category: 'esporte_lazer'}) RETURN count(p) AS products_in_category"
+    },
+    {
+      "id": 18,
+      "complexity": "filter",
+      "question": "How many orders have a review score of 1?",
+      "gold_cypher": "MATCH (o:Order)-[:HAS_REVIEW]->(r:Review {score: 1}) RETURN count(o) AS one_star_orders"
+    },
+    {
+      "id": 19,
+      "complexity": "filter",
+      "question": "How many sellers are from Sao Paulo state?",
+      "gold_cypher": "MATCH (s:Seller {state: 'SP'}) RETURN count(s) AS sellers_in_sp"
+    },
+    {
+      "id": 20,
+      "complexity": "filter",
+      "question": "How many customers are from the city of Rio de Janeiro?",
+      "gold_cypher": "MATCH (c:Customer {city: 'rio de janeiro'}) RETURN count(c) AS customers_in_rio"
+    },
+    {
+      "id": 21,
+      "complexity": "aggregation",
+      "question": "What is the average review score across all orders?",
+      "gold_cypher": "MATCH (r:Review) RETURN avg(r.score) AS avg_review_score"
+    },
+    {
+      "id": 22,
+      "complexity": "aggregation",
+      "question": "Which product category has the most products?",
+      "gold_cypher": "MATCH (p:Product) RETURN p.category AS category, count(p) AS total ORDER BY total DESC LIMIT 1"
+    },
+    {
+      "id": 23,
+      "complexity": "aggregation",
+      "question": "Which state has the most customers?",
+      "gold_cypher": "MATCH (c:Customer) RETURN c.state AS state, count(c) AS total ORDER BY total DESC LIMIT 1"
+    },
+    {
+      "id": 24,
+      "complexity": "aggregation",
+      "question": "What is the most common order status?",
+      "gold_cypher": "MATCH (o:Order) WITH o.status AS status, count(o) AS total ORDER BY total DESC LIMIT 1 RETURN status"
+    },
+    {
+      "id": 25,
+      "complexity": "aggregation",
+      "question": "How many orders does each seller have?",
+      "gold_cypher": "MATCH (o:Order)-[:CONTAINS]->(p:Product)-[:SOLD_BY]->(s:Seller) RETURN s.seller_id AS seller, count(DISTINCT o) AS total_orders ORDER BY total_orders DESC"
+    },
+    {
+      "id": 26,
+      "complexity": "aggregation",
+      "question": "Which city has the most sellers?",
+      "gold_cypher": "MATCH (s:Seller) RETURN s.city AS city, count(s) AS total ORDER BY total DESC LIMIT 1"
+    },
+    {
+      "id": 27,
+      "complexity": "aggregation",
+      "question": "What is the average review score per product category?",
+      "gold_cypher": "MATCH (o:Order)-[:CONTAINS]->(p:Product), (o)-[:HAS_REVIEW]->(r:Review) RETURN p.category AS category, avg(r.score) AS avg_score ORDER BY avg_score DESC"
+    },
+    {
+      "id": 28,
+      "complexity": "aggregation",
+      "question": "How many orders were placed per state?",
+      "gold_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order) RETURN c.state AS state, count(o) AS total_orders ORDER BY total_orders DESC"
+    },
+    {
+      "id": 29,
+      "complexity": "aggregation",
+      "question": "Which seller has sold products in the most orders?",
+      "gold_cypher": "MATCH (o:Order)-[:CONTAINS]->(p:Product)-[:SOLD_BY]->(s:Seller) RETURN s.seller_id AS seller, count(DISTINCT o) AS total_orders ORDER BY total_orders DESC LIMIT 1"
+    },
+    {
+      "id": 30,
+      "complexity": "aggregation",
+      "question": "How many products has each seller sold?",
+      "gold_cypher": "MATCH (p:Product)-[:SOLD_BY]->(s:Seller) RETURN s.seller_id AS seller, count(p) AS total_products ORDER BY total_products DESC"
+    },
+    {
+      "id": 31,
+      "complexity": "multihop",
+      "question": "Which customers placed orders that received a review score of 5?",
+      "gold_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:HAS_REVIEW]->(r:Review {score: 5}) RETURN DISTINCT c.customer_id AS customer_id"
+    },
+    {
+      "id": 32,
+      "complexity": "multihop",
+      "question": "Which sellers sold products in orders that were cancelled?",
+      "gold_cypher": "MATCH (o:Order {status: 'canceled'})-[:CONTAINS]->(p:Product)-[:SOLD_BY]->(s:Seller) RETURN DISTINCT s.seller_id AS seller_id"
+    },
+    {
+      "id": 33,
+      "complexity": "multihop",
+      "question": "Which product categories were ordered by customers from Sao Paulo state?",
+      "gold_cypher": "MATCH (c:Customer {state: 'SP'})-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product) RETURN DISTINCT p.category AS category"
+    },
+    {
+      "id": 34,
+      "complexity": "multihop",
+      "question": "How many customers from Rio de Janeiro state placed orders with a review score of 1?",
+      "gold_cypher": "MATCH (c:Customer {state: 'RJ'})-[:PLACED]->(o:Order)-[:HAS_REVIEW]->(r:Review {score: 1}) RETURN count(DISTINCT c) AS customers"
+    },
+    {
+      "id": 35,
+      "complexity": "multihop",
+      "question": "Which sellers sold products to customers from Minas Gerais?",
+      "gold_cypher": "MATCH (c:Customer {state: 'MG'})-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product)-[:SOLD_BY]->(s:Seller) RETURN DISTINCT s.seller_id AS seller_id"
+    },
+    {
+      "id": 36,
+      "complexity": "multihop",
+      "question": "What product categories did customers from SP order that got a 5 star review?",
+      "gold_cypher": "MATCH (c:Customer {state: 'SP'})-[:PLACED]->(o:Order)-[:HAS_REVIEW]->(r:Review {score: 5}), (o)-[:CONTAINS]->(p:Product) RETURN DISTINCT p.category AS category"
+    },
+    {
+      "id": 37,
+      "complexity": "multihop",
+      "question": "Which customers placed more than one order?",
+      "gold_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order) WITH c, count(o) AS total WHERE total > 1 RETURN c.customer_id AS customer_id, total ORDER BY total DESC"
+    },
+    {
+      "id": 38,
+      "complexity": "multihop",
+      "question": "Which sellers have only received 1 star reviews?",
+      "gold_cypher": "MATCH (o:Order)-[:CONTAINS]->(p:Product)-[:SOLD_BY]->(s:Seller), (o)-[:HAS_REVIEW]->(r:Review) WITH s, collect(DISTINCT r.score) AS scores WHERE all(score IN scores WHERE score = 1) RETURN s.seller_id AS seller_id"
+    },
+    {
+      "id": 39,
+      "complexity": "multihop",
+      "question": "How many distinct product categories were ordered by customers from each state?",
+      "gold_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product) RETURN c.state AS state, count(DISTINCT p.category) AS distinct_categories ORDER BY distinct_categories DESC"
+    },
+    {
+      "id": 40,
+      "complexity": "multihop",
+      "question": "Which product categories have an average review score above 4?",
+      "gold_cypher": "MATCH (o:Order)-[:CONTAINS]->(p:Product), (o)-[:HAS_REVIEW]->(r:Review) WITH p.category AS category, avg(r.score) AS avg_score WHERE avg_score > 4 RETURN category, avg_score ORDER BY avg_score DESC"
+    },
+    {
+      "id": 41,
+      "complexity": "multihop",
+      "question": "Which customers placed orders containing products from more than one seller?",
+      "gold_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product)-[:SOLD_BY]->(s:Seller) WITH c, o, count(DISTINCT s) AS seller_count WHERE seller_count > 1 RETURN DISTINCT c.customer_id AS customer_id"
+    },
+    {
+      "id": 42,
+      "complexity": "multihop",
+      "question": "What is the average review score for orders placed by customers from SP?",
+      "gold_cypher": "MATCH (c:Customer {state: 'SP'})-[:PLACED]->(o:Order)-[:HAS_REVIEW]->(r:Review) RETURN avg(r.score) AS avg_score"
+    },
+    {
+      "id": 43,
+      "complexity": "multihop",
+      "question": "Which sellers sold products that were ordered by customers from more than 3 different states?",
+      "gold_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product)-[:SOLD_BY]->(s:Seller) WITH s, count(DISTINCT c.state) AS state_count WHERE state_count > 3 RETURN s.seller_id AS seller_id, state_count ORDER BY state_count DESC"
+    },
+    {
+      "id": 44,
+      "complexity": "multihop",
+      "question": "How many orders containing products in the informatica_acessorios category received a review score below 3?",
+      "gold_cypher": "MATCH (o:Order)-[:CONTAINS]->(p:Product {category: 'informatica_acessorios'}), (o)-[:HAS_REVIEW]->(r:Review) WHERE r.score < 3 RETURN count(DISTINCT o) AS orders"
+    },
+    {
+      "id": 45,
+      "complexity": "multihop",
+      "question": "Which states have customers who ordered products from sellers in SP?",
+      "gold_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product)-[:SOLD_BY]->(s:Seller {state: 'SP'}) RETURN DISTINCT c.state AS customer_state"
+    },
+    {
+      "id": 46,
+      "complexity": "multihop",
+      "question": "What is the most ordered product category by customers from RJ?",
+      "gold_cypher": "MATCH (c:Customer {state: 'RJ'})-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product) RETURN p.category AS category, count(o) AS total ORDER BY total DESC LIMIT 1"
+    },
+    {
+      "id": 47,
+      "complexity": "multihop",
+      "question": "Which sellers have sold products across the most product categories?",
+      "gold_cypher": "MATCH (p:Product)-[:SOLD_BY]->(s:Seller) RETURN s.seller_id AS seller_id, count(DISTINCT p.category) AS category_count ORDER BY category_count DESC LIMIT 5"
+    },
+    {
+      "id": 48,
+      "complexity": "multihop",
+      "question": "How many orders placed by customers from SP contained products sold by sellers also from SP?",
+      "gold_cypher": "MATCH (c:Customer {state: 'SP'})-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product)-[:SOLD_BY]->(s:Seller {state: 'SP'}) RETURN count(DISTINCT o) AS orders"
+    },
+    {
+      "id": 49,
+      "complexity": "multihop",
+      "question": "Which product categories have never received a review score below 2?",
+      "gold_cypher": "MATCH (p:Product)<-[:CONTAINS]-(o:Order)-[:HAS_REVIEW]->(r:Review) WITH p.category AS category, min(r.score) AS min_score WHERE min_score >= 2 RETURN category ORDER BY category"
+    },
+    {
+      "id": 50,
+      "complexity": "multihop",
+      "question": "How many customers placed orders with all 5 star reviews?",
+      "gold_cypher": "MATCH (c:Customer)-[:PLACED]->(o:Order)-[:HAS_REVIEW]->(r:Review) WITH c, collect(r.score) AS scores WHERE all(s IN scores WHERE s = 5) RETURN count(DISTINCT c) AS customers"
+    }
+  ]
